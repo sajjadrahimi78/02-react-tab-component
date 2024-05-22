@@ -50,3 +50,7 @@
   color: var(--slate-700);
   font-size: 1.5rem;
 }
+
+.close-btn{
+  margin-bottom: 2rem;
+}
