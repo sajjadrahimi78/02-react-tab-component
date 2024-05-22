@@ -25,29 +25,43 @@ function App() {
   // update content
 
   // state / react hooks (useState , useEffect , ...)
-  const [activeTab , setActiveTab] = useState(1) // [state , func seter => setStart => update func]
+  const [activeTab, setActiveTab] = useState(1); // [state , func seter => setStart => update func]
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleActiveTab = (id) => {
     // console.log("clicked",{id});
-    setActiveTab(id)
+    setActiveTab(id);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <div className="tab">
-      <div className="tab__header">
-        {tabData.map((tab) => (
-          <button
-            key={tab.id}
-            className={activeTab === tab.id ? "active" : ""}
-            //  onClick={() => alert("mouse entered.")} // couse alert is a function And to avoid calling the default function, we write it as an arrow function
-            onClick={() => handleActiveTab(tab.id)}
-          >
-            <span>{tab.title}</span>
-            <span className="tab-indicator"></span>
-          </button>
-        ))}
-      </div>
-      <div className="tab__content">{tabData[activeTab - 1].content}</div>
+    <div>
+      <button onClick={handleOpen} className="close-btn">
+        ❌
+      </button>
+      {isOpen ? (
+        <div className="tab">
+          <div className="tab__header">
+            {tabData.map((tab) => (
+              <button
+                key={tab.id}
+                className={activeTab === tab.id ? "active" : ""}
+                //  onClick={() => alert("mouse entered.")} // couse alert is a function And to avoid calling the default function, we write it as an arrow function
+                onClick={() => handleActiveTab(tab.id)}
+              >
+                <span>{tab.title}</span>
+                <span className="tab-indicator"></span>
+              </button>
+            ))}
+          </div>
+          <div className="tab__content">{tabData[activeTab - 1].content}</div>
+        </div>
+      ) : (
+        <p className="tab__content">Closed ...</p>
+      )}
     </div>
   );
 }
