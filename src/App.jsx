@@ -24,10 +24,12 @@ function App() {
   // update indicator => when btn is active
   // update content
 
-  const activeTab = 1;
+  // state / react hooks (useState , useEffect , ...)
+  const [activeTab , setActiveTab] = useState(1) // [state , func seter => setStart => update func]
 
   const handleActiveTab = (id) => {
-    console.log("clicked",{id});
+    // console.log("clicked",{id});
+    setActiveTab(id)
   };
 
   return (
