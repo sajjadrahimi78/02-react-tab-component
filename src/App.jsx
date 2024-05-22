@@ -27,10 +27,19 @@ function App() {
   // state / react hooks (useState , useEffect , ...)
   const [activeTab, setActiveTab] = useState(1); // [state , func seter => setStart => update func]
   const [isOpen, setIsOpen] = useState(true);
+  const [count, setCount] = useState(0);
 
   const handleActiveTab = (id) => {
     // console.log("clicked",{id});
     setActiveTab(id);
+
+    //وقتی که مقدار قبلی ما برای آپدیت کردن مهم باشه باید از روش کالبک متد استفاده کنیم ن این روش
+    // setCount(count + 1); //0 + 1 => 1
+    // setCount(count + 1); //0 + 1 => 1
+
+    // updating state based on prev state value : callback method!
+    setCount((c) => c + 1); //0 + 1 => 1
+    setCount((c) => c + 1); //1 + 1 => 2
   };
 
   const handleOpen = () => {
@@ -57,7 +66,9 @@ function App() {
               </button>
             ))}
           </div>
-          <div className="tab__content">{tabData[activeTab - 1].content}</div>
+          <div className="tab__content">
+            {tabData[activeTab - 1].content} - {count}
+          </div>
         </div>
       ) : (
         <p className="tab__content">Closed ...</p>
