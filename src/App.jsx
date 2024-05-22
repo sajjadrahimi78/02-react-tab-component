@@ -19,16 +19,27 @@ const tabData = [
 ];
 
 function App() {
-  const activeTab = 1;
   // activeTab => update UI
   // update tab style
   // update indicator => when btn is active
   // update content
+
+  const activeTab = 1;
+
+  const handleActiveTab = (id) => {
+    console.log("clicked",{id});
+  };
+
   return (
     <div className="tab">
       <div className="tab__header">
         {tabData.map((tab) => (
-          <button key={tab.id} className={activeTab === tab.id ? "active" : ""}>
+          <button
+            key={tab.id}
+            className={activeTab === tab.id ? "active" : ""}
+            //  onClick={() => alert("mouse entered.")} // couse alert is a function And to avoid calling the default function, we write it as an arrow function
+            onClick={() => handleActiveTab(tab.id)}
+          >
             <span>{tab.title}</span>
             <span className="tab-indicator"></span>
           </button>
